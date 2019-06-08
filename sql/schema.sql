@@ -11,7 +11,7 @@
  Target Server Version : 80015
  File Encoding         : 65001
 
- Date: 08/06/2019 22:32:57
+ Date: 08/06/2019 22:41:36
 */
 
 SET NAMES utf8mb4;
@@ -25,6 +25,7 @@ CREATE TABLE `login` (
   `user_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户名',
   `password` varchar(50) NOT NULL COMMENT 'md5加密后的密码',
   `last_time` timestamp NULL DEFAULT NULL COMMENT '上次登录时间',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '用户创建时间',
   PRIMARY KEY (`user_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户登录表';
 
@@ -32,8 +33,8 @@ CREATE TABLE `login` (
 -- Records of login
 -- ----------------------------
 BEGIN;
-INSERT INTO `login` VALUES ('admin', '1130e637df92a729bc898b794eb7a117', '2019-05-06 11:40:54');
-INSERT INTO `login` VALUES ('stdwal', '8a9c9c87023a3ac44fc22eb92deaa335', '2019-05-28 17:41:54');
+INSERT INTO `login` VALUES ('admin', '1130e637df92a729bc898b794eb7a117', '2019-05-06 11:40:54', '2019-03-20 12:35:32');
+INSERT INTO `login` VALUES ('stdwal', '8a9c9c87023a3ac44fc22eb92deaa335', '2019-05-28 17:41:54', '2019-05-27 16:21:04');
 COMMIT;
 
 -- ----------------------------
