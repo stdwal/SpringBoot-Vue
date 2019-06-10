@@ -61,6 +61,7 @@ export default {
       planList:[],
       currentCity: {},
       newMarker: '',
+      delete: false
     }
   },
   methods: {
@@ -68,23 +69,26 @@ export default {
       return this.api + cityCode + "/planList/";
     },
     getTravelPlanList(row) {
-      var city = row.city;
-      var cityCode = row.cityCode;
-      this.currentCity = {
-        city: city,
-        cityCode: cityCode
-      };
-      this.$axios.get(this.planListApi(cityCode)).then(response => {
-        this.planList = [];
-        var planList = response.data;
-        for (var i = 0; i < planList.length; i++) {
-          this.planList.push({
-            place: planList[i]
-          });
-        }
-      })
-      this.autoComplete.setCity(city);
-      this.autoComplete.setCityLimit(true);
+      if (this.delete === false) {
+        var city = row.city;
+        var cityCode = row.cityCode;
+        this.currentCity = {
+          city: city,
+          cityCode: cityCode
+        };
+        this.$axios.get(this.planListApi(cityCode)).then(response => {
+          this.planList = [];
+          var planList = response.data;
+          for (var i = 0; i < planList.length; i++) {
+            this.planList.push({
+              place: planList[i]
+            });
+          }
+        })
+        this.autoComplete.setCity(city);
+        this.autoComplete.setCityLimit(true);
+      }
+      this.delete = false;
     },
     deleteCityListRow(index) {
       var cityCode = this.cityList[index].cityCode;
@@ -94,7 +98,9 @@ export default {
       this.$message({
         type: 'success',
         message: '删除成功'
-      })
+      });
+      this.planList = [];
+      this.delete = true;
     },
     addCityListRow(city) {
       var flag = true;
