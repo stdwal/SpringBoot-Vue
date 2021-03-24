@@ -5,7 +5,6 @@ import qust.travelassistant.entity.Login;
 
 import java.util.Date;
 
-@Mapper
 public interface LoginDao {
 
     @Select("SELECT * FROM login WHERE user_name = #{userName}")

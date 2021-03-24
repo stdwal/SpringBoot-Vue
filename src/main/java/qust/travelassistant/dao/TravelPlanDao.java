@@ -6,7 +6,6 @@ import qust.travelassistant.entity.City;
 import java.time.LocalDate;
 import java.util.List;
 
-@Mapper
 public interface TravelPlanDao {
 
     @Select("SELECT DISTINCT city_code, city FROM travel_plan WHERE user_name = #{userName}")
