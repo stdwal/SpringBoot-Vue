@@ -1,6 +1,6 @@
-# Created by .ignore support plugin (hsz.mobi)
 .vscode/
 .DS_Store
 package-lock.json
 dist/
 node_modules
+build
